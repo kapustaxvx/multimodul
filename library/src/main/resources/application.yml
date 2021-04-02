@@ -1,0 +1,5 @@
+service:
+  message: Hello, World
+
+server:
+  port: 9090
