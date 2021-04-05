@@ -23,22 +23,22 @@ public class TaskController {
     }
 
     @PutMapping(value = "/{taskId}")
-    Task updateTask(@PathVariable(value = "taskId") Long taskId, @RequestBody Task task){
+    Task updateTask(@PathVariable(value = "taskId") Long taskId, @RequestBody Task task) {
         return taskService.updateTask(taskId, task);
     }
 
     @DeleteMapping(value = "/{taskId}")
-    void deleteTask(@PathVariable(value = "taskId") Long taskId){
+    void deleteTask(@PathVariable(value = "taskId") Long taskId) {
         taskService.deleteTask(taskId);
     }
 
     @GetMapping(value = "/{taskId}")
-    Task getTaskById(@PathVariable(value = "taskId") Long taskId){
+    Task getTaskById(@PathVariable(value = "taskId") Long taskId) {
         return taskService.getTaskById(taskId);
     }
 
     @GetMapping
-    List<Task> getAllTasksOfUser(@PathVariable(value = "userId") Long userId){
+    List<Task> getAllTasksOfUser(@PathVariable(value = "userId") Long userId) {
         return taskService.getAllTasksOfUser(userId);
     }
 

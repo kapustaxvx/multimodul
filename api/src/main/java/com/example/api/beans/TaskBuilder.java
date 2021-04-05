@@ -25,9 +25,9 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        Preconditions.checkArgument(task.taskId!=null);
-        Preconditions.checkArgument(task.title!=null);
-        Preconditions.checkArgument(task.author!=null);
+        Preconditions.checkArgument(task.taskId != null);
+        Preconditions.checkArgument(task.title != null);
+        Preconditions.checkArgument(task.author != null);
         return task;
     }
 }

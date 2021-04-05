@@ -49,7 +49,7 @@ public class TaskService implements TaskClient {
         return list;
     }
 
-    private Task defaultTask(String author){
+    private Task defaultTask(String author) {
         return TaskBuilder.create()
                 .withTaskId(new Random().nextLong())
                 .withTitle("Кушать")
