@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    user_id    BIGSERIAL PRIMARY KEY ,
+    name  VARCHAR(200) NOT NULL ,
+    birth_date TIMESTAMP NOT NULL
+);

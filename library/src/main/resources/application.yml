@@ -3,3 +3,12 @@ service:
 
 server:
   port: 9090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tasklistDB
+    username: taskadmin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    schema: classpath*:database/initDB.sql
