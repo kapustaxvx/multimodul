@@ -18,7 +18,7 @@ public class TaskController {
     }
 
     @PostMapping
-    Task createTask(@PathVariable(value = "userId") Long userId, @RequestBody Task task) {
+    Task createTask(Long userId, @RequestBody Task task) {
         return taskService.createTask(userId, task);
     }
 
@@ -38,7 +38,7 @@ public class TaskController {
     }
 
     @GetMapping
-    List<Task> getAllTasksOfUser(@PathVariable(value = "userId") Long userId) {
+    List<Task> getAllTasksOfUser( Long userId) {
         return taskService.getAllTasksOfUser(userId);
     }
 

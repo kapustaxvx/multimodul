@@ -3,10 +3,12 @@ package com.example.application.service;
 import com.example.api.TaskClient;
 import com.example.api.beans.Task;
 import com.example.api.beans.TaskBuilder;
+import com.example.api.beans.TaskStatus;
 import com.example.application.dao.TaskDAO;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,8 +54,10 @@ public class TaskService implements TaskClient {
     private Task defaultTask(String author) {
         return TaskBuilder.create()
                 .withTaskId(new Random().nextLong())
+                .withStatusId(TaskStatus.NEW)
+                .withCreationDate(Clock.systemDefaultZone().instant())
                 .withTitle("Кушать")
-                .withAuthor(author)
+                .withExpirationDate(Clock.systemDefaultZone().instant().plusSeconds(500000L))
                 .build();
     }
 }
