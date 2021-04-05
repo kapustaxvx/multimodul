@@ -49,6 +49,7 @@ public class UserService implements UserClient {
         return users;
     }
 
+
     private User defaultUser(String name){
         return UserBuilder.create()
                 .withUserId(new Random().nextLong())

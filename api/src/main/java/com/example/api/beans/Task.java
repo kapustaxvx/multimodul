@@ -1,13 +1,16 @@
 package com.example.api.beans;
 
+import java.time.Instant;
 import java.util.Objects;
 
 
 public class Task {
 
     Long taskId;
+    TaskStatus statusId;
+    Instant creationDate;
     String title;
-    String author;
+    Instant expirationDate;
 
     Task() {
     }
@@ -16,34 +19,47 @@ public class Task {
         return taskId;
     }
 
+    public TaskStatus getStatusId() {
+        return statusId;
+    }
+
+    public Instant getCreationDate() {
+        return creationDate;
+    }
+
     public String getTitle() {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public Instant getExpirationDate() {
+        return expirationDate;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Task)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(taskId, task.taskId) && Objects.equals(title, task.title) && Objects.equals(author, task.author);
+        return Objects.equals(taskId, task.taskId) &&
+                statusId == task.statusId &&
+                Objects.equals(creationDate, task.creationDate) &&
+                Objects.equals(title, task.title) &&
+                Objects.equals(expirationDate, task.expirationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, title, author);
+        return Objects.hash(taskId, statusId, creationDate, title, expirationDate);
     }
 
     @Override
     public String toString() {
         return "Task{" +
                 "taskId=" + taskId +
+                ", statusId=" + statusId +
+                ", creationDate=" + creationDate +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", expirationDate=" + expirationDate +
                 '}';
     }
 }

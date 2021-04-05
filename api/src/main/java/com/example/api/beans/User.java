@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class User {
 
-     Long userId;
-     String name;
-     Instant birthDate;
+    Long userId;
+    String name;
+    Instant birthDate;
 
     public User() {
     }
