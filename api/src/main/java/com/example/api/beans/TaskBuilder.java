@@ -41,7 +41,6 @@ public class TaskBuilder {
         Preconditions.checkArgument(task.statusId!=null);
         Preconditions.checkArgument(task.creationDate!=null);
         Preconditions.checkArgument(task.title != null);
-        Preconditions.checkArgument(task.expirationDate != null);
         return task;
     }
 }
