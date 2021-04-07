@@ -5,10 +5,9 @@ import com.example.api.beans.Task;
 import com.example.api.beans.TaskBuilder;
 import com.example.api.beans.TaskStatus;
 import com.example.application.dao.TaskDAO;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.time.Clock;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +15,7 @@ import java.util.Random;
 @Service
 public class TaskService implements TaskClient {
 
-    private TaskDAO taskDAO;
+    private final TaskDAO taskDAO;
 
     public TaskService(TaskDAO taskDAO) {
         this.taskDAO = taskDAO;
@@ -54,10 +53,10 @@ public class TaskService implements TaskClient {
     private Task defaultTask(String author) {
         return TaskBuilder.create()
                 .withTaskId(new Random().nextLong())
-                .withStatusId(TaskStatus.NEW)
-                .withCreationDate(Clock.systemDefaultZone().instant())
+                .withStatus(TaskStatus.NEW)
+                .withCreationDate(Instant.now())
                 .withTitle("Кушать")
-                .withExpirationDate(Clock.systemDefaultZone().instant().plusSeconds(500000L))
+                .withExpirationDate(Instant.now().plusSeconds(500000000L))
                 .build();
     }
 }

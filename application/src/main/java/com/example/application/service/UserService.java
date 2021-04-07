@@ -6,7 +6,6 @@ import com.example.api.beans.UserBuilder;
 import com.example.application.dao.UserDAO;
 import org.springframework.stereotype.Service;
 
-import java.time.Clock;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.Random;
 @Service
 public class UserService implements UserClient {
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public UserService(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -54,7 +53,7 @@ public class UserService implements UserClient {
         return UserBuilder.create()
                 .withUserId(new Random().nextLong())
                 .withName(name)
-                .withBirthDate(Clock.systemDefaultZone().instant())
+                .withBirthDate(Instant.now())
                 .build();
     }
 }

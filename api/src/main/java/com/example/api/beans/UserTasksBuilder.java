@@ -7,7 +7,6 @@ import java.util.List;
 public class UserTasksBuilder {
 
     private final UserTasks userTasks = new UserTasks();
-   // private final List<Task> taskList = new ArrayList<>();
 
     public static UserTasksBuilder create() {
         return new UserTasksBuilder();
@@ -25,6 +24,7 @@ public class UserTasksBuilder {
 
     public UserTasks build(){
         Preconditions.checkArgument(userTasks.userId!=null);
+        Preconditions.checkArgument(userTasks.tasksOfUser!=null);
         return userTasks;
     }
 }
