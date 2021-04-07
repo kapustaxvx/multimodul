@@ -2,7 +2,6 @@ package com.example.application.controller;
 
 import com.example.api.beans.Task;
 import com.example.application.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 @RequestMapping(value = "/api/tasks")
 public class TaskController {
 
-    private TaskService taskService;
+    private final TaskService taskService;
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;

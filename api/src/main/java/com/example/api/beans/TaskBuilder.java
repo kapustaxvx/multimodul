@@ -16,8 +16,8 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withStatusId(TaskStatus statusId){
-        task.statusId = statusId;
+    public TaskBuilder withStatus(TaskStatus status){
+        task.status = status;
         return this;
     }
 
@@ -38,7 +38,7 @@ public class TaskBuilder {
 
     public Task build() {
         Preconditions.checkArgument(task.taskId != null);
-        Preconditions.checkArgument(task.statusId!=null);
+        Preconditions.checkArgument(task.status!=null);
         Preconditions.checkArgument(task.creationDate!=null);
         Preconditions.checkArgument(task.title != null);
         return task;

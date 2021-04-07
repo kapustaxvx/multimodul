@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Task {
 
     Long taskId;
-    TaskStatus statusId;
+    TaskStatus status;
     Instant creationDate;
     String title;
     Instant expirationDate;
@@ -19,8 +19,8 @@ public class Task {
         return taskId;
     }
 
-    public TaskStatus getStatusId() {
-        return statusId;
+    public TaskStatus getStatus() {
+        return status;
     }
 
     public Instant getCreationDate() {
@@ -41,7 +41,7 @@ public class Task {
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
         return Objects.equals(taskId, task.taskId) &&
-                statusId == task.statusId &&
+                status == task.status &&
                 Objects.equals(creationDate, task.creationDate) &&
                 Objects.equals(title, task.title) &&
                 Objects.equals(expirationDate, task.expirationDate);
@@ -49,14 +49,14 @@ public class Task {
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, statusId, creationDate, title, expirationDate);
+        return Objects.hash(taskId, status, creationDate, title, expirationDate);
     }
 
     @Override
     public String toString() {
         return "Task{" +
                 "taskId=" + taskId +
-                ", statusId=" + statusId +
+                ", status=" + status +
                 ", creationDate=" + creationDate +
                 ", title='" + title + '\'' +
                 ", expirationDate=" + expirationDate +
