@@ -1,12 +1,13 @@
 package com.example.api;
 
+import com.example.api.beans.AssignRequest;
 import com.example.api.beans.Task;
 
 import java.util.List;
 
 public interface TaskClient {
 
-    Task createTask(Long userId, Task task);
+    Task createTask(Task task);
 
     Task updateTask(Long taskId, Task task);
 
@@ -15,4 +16,6 @@ public interface TaskClient {
     Task getTaskById(Long taskId);
 
     List<Task> getAllTasksOfUser(Long userId);
+
+    void assignTask(Long taskId, AssignRequest request);
 }

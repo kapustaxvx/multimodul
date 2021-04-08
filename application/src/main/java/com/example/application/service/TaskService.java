@@ -1,10 +1,12 @@
 package com.example.application.service;
 
 import com.example.api.TaskClient;
+import com.example.api.beans.AssignRequest;
 import com.example.api.beans.Task;
 import com.example.api.beans.TaskBuilder;
 import com.example.api.beans.TaskStatus;
 import com.example.application.dao.TaskDAO;
+import com.example.application.dao.TaskStatusesDAO;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -16,14 +18,21 @@ import java.util.Random;
 public class TaskService implements TaskClient {
 
     private final TaskDAO taskDAO;
+    private final TaskStatusesDAO taskStatusesDAO;
 
-    public TaskService(TaskDAO taskDAO) {
+    public TaskService(TaskDAO taskDAO, TaskStatusesDAO taskStatusesDAO) {
         this.taskDAO = taskDAO;
+        this.taskStatusesDAO = taskStatusesDAO;
     }
 
     @Override
-    public Task createTask(Long userId, Task task) {
-        return defaultTask("Gleb");
+    public Task createTask(Task task) {
+        return taskDAO.createTask(task);
+    }
+
+    @Override
+    public void assignTask(Long taskId, AssignRequest request) {
+        taskDAO.assignTask(taskId, request.getUserId());
     }
 
 
@@ -39,7 +48,7 @@ public class TaskService implements TaskClient {
 
     @Override
     public Task getTaskById(Long taskId) {
-        return defaultTask("Ilia");
+        return taskDAO.getTaskById(taskId);
     }
 
     @Override
@@ -49,6 +58,7 @@ public class TaskService implements TaskClient {
         list.add(defaultTask("Julia"));
         return list;
     }
+
 
     private Task defaultTask(String author) {
         return TaskBuilder.create()

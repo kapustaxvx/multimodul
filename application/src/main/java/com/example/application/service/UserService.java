@@ -7,7 +7,6 @@ import com.example.application.dao.UserDAO;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -22,34 +21,27 @@ public class UserService implements UserClient {
 
     @Override
     public User createUser(User user) {
-        return defaultUser("Ilia");
+        return userDAO.createUser(user);
     }
 
     @Override
     public User getUserById(Long userId) {
-        return defaultUser("Gleb");
+        return userDAO.getUserById(userId);
     }
 
-    @Override
-    public void deleteUser(Long userId) {
-    }
 
     @Override
     public User updateUser(Long userId, User user) {
-        return defaultUser("Alima");
+        return userDAO.updateUser(userId, user);
     }
 
     @Override
     public List<User> getAllUsers() {
-        final ArrayList<User> users = new ArrayList<>();
-        users.add(defaultUser("Alima"));
-        users.add(defaultUser("Gleb"));
-        users.add(defaultUser("Ilia"));
-        return users;
+        return userDAO.getAllUsers();
     }
 
 
-    private User defaultUser(String name){
+    private User defaultUser(String name) {
         return UserBuilder.create()
                 .withUserId(new Random().nextLong())
                 .withName(name)

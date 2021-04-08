@@ -10,8 +10,6 @@ public interface UserClient {
 
     User getUserById(Long userId);
 
-    void deleteUser(Long userId);
-
     User updateUser(Long userId, User user);
 
     List<User> getAllUsers();
