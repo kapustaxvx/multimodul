@@ -23,7 +23,7 @@ public class TaskController {
     }
 
 
-    @PostMapping(value = "/{taskId}")
+    @PostMapping(value = "/{taskId}/assign")
     void assignTask(@PathVariable(value = "taskId") Long taskId, @RequestBody AssignRequest assignRequest) {
         taskService.assignTask(taskId, assignRequest);
     }
@@ -33,19 +33,15 @@ public class TaskController {
         return taskService.updateTask(taskId, task);
     }
 
-    @DeleteMapping(value = "/{taskId}")
-    void deleteTask(@PathVariable(value = "taskId") Long taskId) {
-        taskService.deleteTask(taskId);
-    }
-
     @GetMapping(value = "/{taskId}")
     Task getTaskById(@PathVariable(value = "taskId") Long taskId) {
         return taskService.getTaskById(taskId);
     }
 
+
     @GetMapping
-    List<Task> getAllTasksOfUser(Long userId) {
-        return taskService.getAllTasksOfUser(userId);
+    List<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 
 }

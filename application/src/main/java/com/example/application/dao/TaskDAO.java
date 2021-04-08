@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public class TaskDAO {
@@ -71,6 +72,36 @@ public class TaskDAO {
             logger.info("[{}] Task not found", taskId);
             return null;
         }
+    }
+
+    public Task updateTask(Long taskId, Task task) {
+        final String SQL = "UPDATE tasks " +
+                "SET status_id = :status, title = :title, expiration_date = :expiration_date " +
+                "WHERE :task_id = task_id " +
+                "RETURNING task_id, status_id, creation_date, title, expiration_date";
+        final MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("task_id", taskId);
+        params.addValue("status", taskStatusesDAO.provideIdentifier(task.getStatus()));
+        params.addValue("title", task.getTitle());
+        params.addValue("expiration_date", Timestamp.from(task.getExpirationDate()));
+        try {
+            final Task updateTask = jdbc.queryForObject(SQL, params, new TaskMapper());
+            return updateTask;
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    public List<Task> getAllTasks() {
+        final String SQL = "SELECT task_id, status_id, creation_date, title, expiration_date FROM tasks";
+        return jdbc.query(SQL, new TaskMapper());
+    }
+
+    public List<Task> getAllTasksOfUser(Long userId) {
+        final String SQL = "SELECT task_id, status_id, creation_date, title, expiration_date " +
+                "FROM tasks WHERE task_id IN (SELECT task_id FROM user_tasks WHERE user_id = :user_id)";
+        final MapSqlParameterSource params = new MapSqlParameterSource("user_id", userId);
+        return jdbc.query(SQL, params, new TaskMapper());
     }
 
     class TaskMapper implements RowMapper<Task> {
