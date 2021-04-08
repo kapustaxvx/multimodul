@@ -1,5 +1,6 @@
 package com.example.application.controller;
 
+import com.example.api.beans.AssignRequest;
 import com.example.api.beans.Task;
 import com.example.application.service.TaskService;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,14 @@ public class TaskController {
     }
 
     @PostMapping
-    Task createTask(Long userId, @RequestBody Task task) {
-        return taskService.createTask(userId, task);
+    Task createTask(@RequestBody Task task) {
+        return taskService.createTask(task);
+    }
+
+
+    @PostMapping(value = "/{taskId}")
+    void assignTask(@PathVariable(value = "taskId") Long taskId, @RequestBody AssignRequest assignRequest) {
+        taskService.assignTask(taskId, assignRequest);
     }
 
     @PutMapping(value = "/{taskId}")
@@ -37,7 +44,7 @@ public class TaskController {
     }
 
     @GetMapping
-    List<Task> getAllTasksOfUser( Long userId) {
+    List<Task> getAllTasksOfUser(Long userId) {
         return taskService.getAllTasksOfUser(userId);
     }
 

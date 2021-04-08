@@ -2,7 +2,7 @@ service:
   message: Hello, World
 
 server:
-  port: 9090
+  port: 9091
 
 spring:
   datasource:
