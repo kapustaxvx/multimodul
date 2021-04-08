@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS tasks
 
 CREATE TABLE IF NOT EXISTS user_tasks
 (
-    user_id BIGINT REFERENCES users (user_id),
-    task_id BIGINT REFERENCES tasks (task_id),
+    user_id BIGINT REFERENCES users (user_id) NOT NULL ,
+    task_id BIGINT REFERENCES tasks (task_id) NOT NULL ,
         UNIQUE(user_id, task_id)
 );

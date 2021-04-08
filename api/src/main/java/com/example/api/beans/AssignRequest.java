@@ -2,10 +2,9 @@ package com.example.api.beans;
 
 public class AssignRequest {
 
-    private final Long userId;
+    private Long userId;
 
-    public AssignRequest(Long userId) {
-        this.userId = userId;
+    public AssignRequest() {
     }
 
     public Long getUserId() {

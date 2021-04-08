@@ -10,7 +10,6 @@ import com.example.application.dao.TaskStatusesDAO;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -35,15 +34,9 @@ public class TaskService implements TaskClient {
         taskDAO.assignTask(taskId, request.getUserId());
     }
 
-
     @Override
     public Task updateTask(Long taskId, Task task) {
-        return defaultTask("Alima");
-    }
-
-    @Override
-    public void deleteTask(Long taskId) {
-
+        return taskDAO.updateTask(taskId, task);
     }
 
     @Override
@@ -53,10 +46,12 @@ public class TaskService implements TaskClient {
 
     @Override
     public List<Task> getAllTasksOfUser(Long userId) {
-        final ArrayList<Task> list = new ArrayList<>();
-        list.add(defaultTask("Jendos"));
-        list.add(defaultTask("Julia"));
-        return list;
+        return taskDAO.getAllTasksOfUser(userId);
+    }
+
+    @Override
+    public List<Task> getAllTasks() {
+        return taskDAO.getAllTasks();
     }
 
 

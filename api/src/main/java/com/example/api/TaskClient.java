@@ -11,11 +11,11 @@ public interface TaskClient {
 
     Task updateTask(Long taskId, Task task);
 
-    void deleteTask(Long taskId);
-
     Task getTaskById(Long taskId);
 
     List<Task> getAllTasksOfUser(Long userId);
+
+    List<Task> getAllTasks();
 
     void assignTask(Long taskId, AssignRequest request);
 }
