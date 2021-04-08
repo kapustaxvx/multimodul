@@ -14,11 +14,6 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>library</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.example</groupId>
